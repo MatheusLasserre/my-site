@@ -37,13 +37,28 @@
     margin-bottom: 20px;
 }
 
+.editButton {
+    background-color: var(--PURPLE1);
+    box-shadow: 0px 0px 10px 0px var(--PURPLE2);
+    border-radius: 5px;
+    width: 120px;
+    height: 25px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+
 .routineContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
-    row-gap: 10px;
+    row-gap: 40px;
     column-gap: 10px;
+    max-width: 350px;
 }
 
 .routineCard {
@@ -102,6 +117,11 @@
     background-color: var(--BLUE1);
     width: 25px;
     height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border-radius: 5px;
 
 }
 
@@ -123,4 +143,43 @@
 .routineRate>p {
     margin: 0;
     margin-bottom: -15px;
+}
+
+.before {
+    color: var(--WHITE1);
+    font-size: 2.5rem;
+    text-align: left;
+    font-weight: bold;
+    width: 100%;
+}
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginParagraph {
+    color: var(--WHITE1);
+    font-size: 2rem;
+    letter-spacing: 0.6px;
+    max-width: 400px;
+}
+
+.loginButton {
+    width: 150px;
+    height: 30px;
+    font-size: 2rem;
+    background-color: var(--PURPLE1);
+    color: var(--WHITE1);
+    box-shadow: 0 0 10px 0 var(--PURPLE2);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all ease-in-out 0.2s;
+}
+
+.loginButton:hover {
+    filter: brightness(1.2);
 }

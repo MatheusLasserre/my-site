@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useRef, useState } from 'react'
 import { RoutineModelCard } from '..';
 import Style from '../../../styles/routine-tracker/Routine.module.css'
@@ -9,9 +10,9 @@ import { trpc } from '../../../utils/trpc';
 
 const Routine: React.FC = () => {
 
-    const [routines, setRoutines] = useState({task: 'placeholder'});
+    const [routines, setRoutines] = useState({ task: 'placeholder' });
 
-    const {data: user} = trpc.tracker.getUser.useQuery();
+    const { data: user } = trpc.tracker.getUser.useQuery();
     const utils = trpc.useContext();
 
     // function saveRoutineChanges() {
@@ -20,13 +21,20 @@ const Routine: React.FC = () => {
     //     console.log(request)
     // }
     const inputRef = useRef<HTMLInputElement>(null);
-    const saveRoutineChanges =  trpc.tracker.newTask.useMutation({
+    const saveRoutineChanges = trpc.tracker.newTask.useMutation({
         onSuccess: () => {
             console.log('Sucesso!')
             utils.tracker.getUser.invalidate();
-            inputRef.current.value = '';
+            updateLastRoutine.mutate();
+
+            if (inputRef.current) {
+
+                inputRef.current.value = '';
+            }
         }
     })
+
+    const updateLastRoutine = trpc.tracker.updateLastRoutine.useMutation();
 
     return (
         <div className={Style.contentWrapper}>
@@ -42,15 +50,25 @@ const Routine: React.FC = () => {
                         </p>
                     </div>
                     <form className={Style.form} onSubmit={(e) => { e.preventDefault() }}>
-                        <div   className={Style.labelContainer}>
-                            <label className={Style.label} htmlFor="routineName">Nome da rotina</label>
-                            <input ref={inputRef} className={Style.input} type="text" onChange={(e) => {setRoutines({task: e.currentTarget.value})}} name="routineName" id="routineName" />
+                        <div className={Style.labelContainer}>
+                            <label className={Style.label} htmlFor="routineName">Nome da rotina:</label>
+                            <input ref={inputRef} className={Style.input} type="text" onChange={(e) => { setRoutines({ task: e.currentTarget.value }) }} name="routineName" id="routineName" />
                         </div>
-                    <button onClick={(e) => { e.preventDefault(); saveRoutineChanges.mutate(routines, { onSuccess: () => console.log('success'), onError: (err) => console.log(err)}) }}>Salvar</button>
+                        <button className={Style.formButton} onClick={(e) => { e.preventDefault(); saveRoutineChanges.mutate(routines, { onSuccess: () => console.log('success'), onError: (err) => console.log(err) }) }}>
+                            Adicionar
+                        </button>
                     </form>
                 </div>
                 <div className={Style.routineModelContainer}>
+                    <p className={Style.routineModelInfo}>
+                        Sua rotina atual:
+                    </p>
                     <RoutineModelCard exercises={user?.routineModel?.exercises}></RoutineModelCard>
+                    <Link href="/routine-tracker" passHref>
+                        <button className={Style.formButton}>
+                            Voltar
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

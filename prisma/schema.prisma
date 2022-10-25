@@ -73,8 +73,7 @@ model Routine {
   id        String     @id @default(cuid())
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
-  name      String
-  user     User       @relation(fields: [userId], references: [id])
+  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
   exercises Exercise[]
 }
@@ -83,7 +82,7 @@ model RoutineModel {
   id        String     @id @default(cuid())
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
-  user     User       @relation(fields: [userId], references: [id])
+  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String     @unique
   exercises ExerciseModel[]
 }
@@ -92,7 +91,7 @@ model Exercise {
   id             String       @id @default(cuid())
   task           String
   concluded      Boolean      @default(false)
-  routine        Routine      @relation(fields: [routineId], references: [id])
+  routine        Routine      @relation(fields: [routineId], references: [id], onDelete: Cascade)
   routineId      String
   // routineModel   RoutineModel @relation(fields: [routineModelId], references: [id])
   // routineModelId String
@@ -102,6 +101,6 @@ model ExerciseModel {
   id             String       @id @default(cuid())
   task           String
   concluded      Boolean      @default(false)
-  routineModel   RoutineModel @relation(fields: [routineModelId], references: [id])
+  routineModel   RoutineModel @relation(fields: [routineModelId], references: [id], onDelete: Cascade)
   routineModelId String
 }

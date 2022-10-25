@@ -78,6 +78,7 @@
     justify-content: flex-start;
     row-gap: 20px;
     width: 100%;
+    overflow-y: scroll;
 }
 
 .routineItemContainer {

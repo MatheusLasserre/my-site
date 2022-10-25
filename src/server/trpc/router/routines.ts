@@ -37,6 +37,20 @@ export const trackerRouter = router({
       }
     });
   }),
+  deleteModelTask: protectedProcedure.input(z.object({id: z.string()})).mutation(({input, ctx}) => {
+    return ctx.prisma.routineModel.update({
+      where: {
+        userId: ctx.session.user.id
+      },
+      data: {
+        exercises: {
+          delete: {
+            id: input.id
+          }
+        }
+      }
+    })
+  }),
 
   getRoutines: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.user.findUnique({

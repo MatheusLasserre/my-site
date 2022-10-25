@@ -12,7 +12,7 @@ const Routine: React.FC = () => {
 
     const [routines, setRoutines] = useState({ task: 'placeholder' });
 
-    const { data: user } = trpc.tracker.getUser.useQuery();
+    // const { data: user } = trpc.tracker.getUser.useQuery();
     const utils = trpc.useContext();
 
     // function saveRoutineChanges() {
@@ -63,7 +63,7 @@ const Routine: React.FC = () => {
                     <p className={Style.routineModelInfo}>
                         Sua rotina atual:
                     </p>
-                    <RoutineModelCard exercises={user?.routineModel?.exercises}></RoutineModelCard>
+                    <RoutineModelCard></RoutineModelCard>
                     <Link href="/routine-tracker" passHref>
                         <button className={Style.formButton}>
                             Voltar

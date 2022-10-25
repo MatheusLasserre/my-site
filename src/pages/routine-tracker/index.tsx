@@ -31,9 +31,9 @@ const Index: NextPage = () => {
                 {
                     session ?
                         (<div className={Style.routineContainer}>
-                            {user && user.routineModel ? <DailyRoutineCard routines={user.routines}></DailyRoutineCard> : null}
+                            {user && user.routineModel ? <DailyRoutineCard></DailyRoutineCard> : null}
                             <p className={Style.before}>Dias anteriores:</p>
-                            {user && user.routineModel?.exercises ? <RoutineCard exercises={user?.routines}></RoutineCard> : null}
+                            {user && user.routineModel?.exercises ? <RoutineCard></RoutineCard> : null}
                         </div>)
                         :
                         <div className={Style.loginContainer}>
@@ -55,12 +55,12 @@ const Index: NextPage = () => {
 
 export default Index
 
-type Exercises = [{
-    id: string,
-    task: string,
-    routineModelId: string,
-    concluded: boolean
-}]
+// type Exercises = [{
+//     id: string,
+//     task: string,
+//     routineModelId: string,
+//     concluded: boolean
+// }]
 
 export const RoutineCard: React.FC = () => {
 
@@ -143,24 +143,26 @@ const DailyRoutineCard: React.FC = () => {
 
     const { data: userRoutines } = trpc.tracker.getUser.useQuery();
 
-    
+
     useEffect(() => {
-        if(userRoutines){
-            if(userRoutines.routines.length === 0){
+        if (userRoutines) {
+            if (userRoutines.routines.length === 0) {
                 createRoutine.mutate();
-            }else {
+            } else {
                 const lastRoutine = userRoutines.routines[0];
                 const today = new Date();
-                const lastRoutineDate = new Date(lastRoutine.createdAt);
-                if(lastRoutineDate.getDate() !== today.getDate()){
-                    console.log('createRoutine: ', lastRoutineDate.getDate() !== today.getDate())
-                    createRoutine.mutate();
+                if (lastRoutine) {
+                    const lastRoutineDate = new Date(lastRoutine.createdAt);
+                    if (lastRoutineDate.getDate() !== today.getDate()) {
+                        console.log('createRoutine: ', lastRoutineDate.getDate() !== today.getDate())
+                        createRoutine.mutate();
+                    }
                 }
             }
-            
+
         }
-        
-    },[userRoutines])
+
+    }, [userRoutines])
 
 
 
@@ -205,7 +207,7 @@ const DailyRoutineCard: React.FC = () => {
     )
 }
 
-export const RoutineModelCard: React.FC<{ exercises: Exercises }> = (props) => {
+export const RoutineModelCard: React.FC = () => {
 
     const [parent] = useAutoAnimate<HTMLDivElement>()
 
@@ -216,6 +218,8 @@ export const RoutineModelCard: React.FC<{ exercises: Exercises }> = (props) => {
             utils.tracker.getUser.invalidate();
         }
     });
+
+    const { data: userRoutine } = trpc.tracker.getUser.useQuery();
     return (
         <div className={Style.routineCard}>
             <div className={Style.routineHeader}>
@@ -225,7 +229,7 @@ export const RoutineModelCard: React.FC<{ exercises: Exercises }> = (props) => {
 
 
                 {
-                    props.exercises?.map(exercise => {
+                    userRoutine?.routineModel?.exercises.map(exercise => {
                         return (
                             <div className={Style.routineItemContainer} key={exercise.id}>
                                 <p className={Style.routineItem}>{exercise.task}</p>

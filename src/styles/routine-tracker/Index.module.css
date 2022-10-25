@@ -1,0 +1,125 @@
+.contentWrapper {
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--BLACK1);
+    padding: 10px;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.header {
+    font-size: 3rem;
+    text-transform: capitalize;
+    color: var(--PURPLE2);
+    margin: auto;
+}
+
+.header>h1 {
+    margin-bottom: 20px;
+}
+
+.greetings {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: var(--WHITE1);
+    margin: auto;
+}
+
+.hello {
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.routineContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.routineCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 350px;
+    height: 400px;
+    margin: auto;
+    background-color: var(--BLUE1);
+    border-radius: 10px;
+    padding: 30px 10px 30px 10px;
+    color: var(--WHITE1);
+}
+
+.routineHeader {
+    font-size: 1.5rem;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.routineDate {
+    margin: auto;
+    text-align: center;
+}
+
+.routineBody {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: 20px;
+    width: 100%;
+}
+
+.routineItemContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--PURPLE2);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.routineItem {
+    font-size: 1.4rem;
+    margin: 0;
+    width: 275px;
+}
+
+.routineItemStatus {
+    background-color: var(--BLUE1);
+    width: 25px;
+    height: 25px;
+
+}
+
+.routineSuccess {
+    background-color: var(--GREEN);
+}
+
+.routineFailed {
+    background-color: var(--RED);
+}
+
+.routineRate {
+    font-size: 1.6rem;
+    margin: auto auto 0 auto;
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+.routineRate>p {
+    margin: 0;
+    margin-bottom: -15px;
+}

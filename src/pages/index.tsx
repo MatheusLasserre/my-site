@@ -52,6 +52,11 @@ const Home: NextPage = () => {
               description="Build data-driven JavaScript & TypeScript apps in less time"
               documentation="https://www.prisma.io/docs/"
             />
+             <TechnologyCard
+              name="Prisma"
+              description="Build data-driven JavaScript & TypeScript apps in less time"
+              documentation="https://www.prisma.io/docs/"
+            />
           </div>
           <div className={styles.helloFrom}>
             {data ? <p>{data.greeting}</p> : <p>Loading...</p>}

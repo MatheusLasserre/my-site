@@ -57,6 +57,7 @@ const Home: NextPage = () => {
             {data ? <p>{data.greeting}</p> : <p>Loading...</p>}
           </div>
           <AuthShowcase />
+          {/* try again */}
         </div>
       </div>
     </>

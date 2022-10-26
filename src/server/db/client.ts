@@ -11,14 +11,11 @@ export const prisma =
   global.prisma ||
   new PrismaClient({
     log:
-      env.NODE_ENV === "development" ? ['query', 'info', 'warn', 'error'] : ['query', 'info', 'warn', 'error'],
+      env.NODE_ENV === "development" ? ['query', 'info', 'warn', 'error'] : ['query', 'info', 'warn', 'error', {
+        emit: 'event',
+        level: 'query',
+      }],
   });
-
-  prisma.$on('query', (e) => {
-    console.log('Query: ' + e.query)
-    console.log('Params: ' + e.params)
-    console.log('Duration: ' + e.duration + 'ms')
-  })
 
 if (env.NODE_ENV !== "production") {
   global.prisma = prisma;

@@ -40,7 +40,7 @@ const Routine: React.FC = () => {
         <div className={Style.contentWrapper}>
             <div className={Style.mainContainer}>
                 <div className={Style.header}>
-                    <h1 className={Style.title}>Routine Tracker</h1>
+                    <h1 className={Style.title}>Routine Trackerr</h1>
                 </div>
 
                 <div className={Style.routineForm}>

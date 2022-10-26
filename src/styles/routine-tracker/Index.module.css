@@ -51,6 +51,11 @@
     font-size: 1.6rem;
 }
 
+.editButton > p {
+    cursor: pointer;
+    user-select: none;
+}
+
 .routineContainer {
     display: flex;
     flex-direction: row;

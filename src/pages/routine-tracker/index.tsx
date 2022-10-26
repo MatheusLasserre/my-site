@@ -18,15 +18,15 @@ const Index: NextPage = () => {
         <div className={Style.contentWrapper}>
             <div className={Style.mainContainer}>
                 <div className={Style.header}>
-                    <h1>Routine Trackerr</h1>
+                    <h1>Routine Tracker</h1>
                 </div>
                 <div className={Style.greetings}>
                     <p className={Style.hello}>Olá, {session?.user?.name}</p>
-                    <Link href="/routine-tracker/edit/routine" passHref>
+                   { session ? <Link href="/routine-tracker/edit/routine" passHref>
                         <p className={Style.editButton}>
                             Editar Rotina
                         </p>
-                    </Link>
+                    </Link>:null}
                 </div>
                 {
                     session ?

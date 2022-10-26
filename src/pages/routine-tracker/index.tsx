@@ -18,7 +18,7 @@ const Index: NextPage = () => {
         <div className={Style.contentWrapper}>
             <div className={Style.mainContainer}>
                 <div className={Style.header}>
-                    <h1>Routine Tracker</h1>
+                    <h1>Routine Trackerr</h1>
                 </div>
                 <div className={Style.greetings}>
                     <p className={Style.hello}>Olá, {session?.user?.name}</p>
